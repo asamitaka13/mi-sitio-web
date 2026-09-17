@@ -1,0 +1,21 @@
+version: '3.8'
+
+
+services:
+  servidor-web:
+    build: .
+    container_name: mi-web-compose
+    ports:
+      - "8080:80"
+    depends_on:
+      - base-datos
+
+  base-datos:
+    image: postgres:15-alpine
+    container_name: mi-db-compose
+    environment:
+      POSTGRES_USER: devops-user
+      POSTGRES_PASSWORD: mi_password_seguro
+      POSTGRES_DB: base_datos_practica
+    ports:
+      - "5432:5432"
